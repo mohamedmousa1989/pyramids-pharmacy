@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pyramids_pharmacy_web
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - DB_NAME=pyramids_pharmacy
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
+    depends_on:
+      - db
+    command: >
+      bash -c "python manage.py migrate &&
+               python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    restart: always
+
+  db:
+    image: postgres:latest
+    container_name: pyramids_pharmacy_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=pyramids_pharmacy
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5436:5432"
+    restart: always
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    driver: bridge
