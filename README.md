@@ -1,1 +1,59 @@
-Pyramids Pharmacy Project 🏥\n\n## Prerequisites ⚙️\n\nBefore running this project, make sure you have the following installed on your system: \n- Docker (v20.10.0 or higher) \n- Docker Compose (v2.0.0 or higher) \n- Git \n\n## Getting Started 🚀\n\n### 1. Clone the Repository\nbash\ngit clone <repository-url>\ncd pyramids-pharmacy\n\n\n### 2. Environment Setup ⚡\nThe project uses Docker Compose for local development. All necessary environment variables are already configured in the docker-compose.yml file.\n\nDefault database credentials: \n- Database name: pyramids_pharmacy \n- Username: postgres \n- Password: postgres \n- Port: 5436 (host) -> 5432 (container) \n\n### 3. Build and Run the Project 🏗️\nbash\n# Build and start the containers\ndocker-compose up --build\n\n# To run in detached mode (background)\ndocker-compose up -d --build\n\n\nThe application will be available at: http://localhost:8000\n\n### 4. Common Commands 📝\n\n#### View running containers\nbash\ndocker-compose ps\n\n\n#### View application logs\nbash\n# View all logs\ndocker-compose logs\n\n# Follow logs in real-time\ndocker-compose logs -f\n\n# View logs for specific service\ndocker-compose logs web\ndocker-compose logs db\n\n\n#### Stop the application\nbash\ndocker-compose down\n\n\n#### Access the Django shell\nbash\ndocker-compose exec web python manage.py shell\n\n\n#### Create database migrations\nbash\ndocker-compose exec web python manage.py makemigrations\n\n\n#### Apply migrations\nbash\ndocker-compose exec web python manage.py migrate\n\n\n#### Create a superuser\nbash\ndocker-compose exec web python manage.py createsuperuser\n\n\n### 5. Database Management 💾\n\nThe PostgreSQL database is accessible on port 5436. You can connect to it using any database management tool with these credentials: \n- Host: localhost \n- Port: 5436 \n- Database: pyramids_pharmacy \n- Username: postgres \n- Password: postgres \n\n### 6. Development Workflow 💻\n\nThe project is set up with hot-reload enabled. Any changes you make to the Python code will automatically reload the development server.\n\nProject files are mounted as a volume, so any changes made locally will be reflected in the container immediately.\n\n### 7. Troubleshooting 🔧\n\n#### Reset Everything\nTo completely reset the project (including database):\nbash\n# Stop containers and remove volumes\ndocker-compose down -v\n\n# Rebuild and start\ndocker-compose up --build\n\n\n#### Database Connection Issues\nIf you can't connect to the database: \n1. Ensure no other service is using port 5436 \n2. Check if the database container is running: \nbash\ndocker-compose ps\n\n\n#### Permission Issues\nIf you encounter permission issues:\nbash\n# Fix file permissions\nsudo chown -R $USER:$USER .\n\n\n### 8. Project Structure 📁\n\npyramids-pharmacy/\n├── Dockerfile\n├── docker-compose.yml\n├── manage.py\n├── requirements.txt\n└── [other project files]\n\n\n## Contributing 🤝\n[Add your contribution guidelines here]\n\n## License 📄\n[Add your license information here]
+Pyramids Pharmacy Project
+Prerequisites
+Before running this project, make sure you have the following installed on your system:
+
+Docker (v20.10.0 or higher)
+Docker Compose (v2.0.0 or higher)
+Git
+
+
+Getting Started
+1. Clone the Repository
+git clone https://github.com/mohamedmousa1989/pyramids-pharmacy.git
+cd pyramids-pharmacy
+
+2. Environment Setup
+The project uses Docker Compose for local development. All necessary environment variables are already configured in the docker-compose.yml file.
+
+Default database credentials:
+
+Database name: pyramids_pharmacy
+Username: postgres
+Password: postgres
+Port: 5436 (host) -> 5432 (container)
+3. Build and Run the Project
+bash
+
+Copy
+# Build and start the containers
+docker-compose up --build
+
+# To run in detached mode (background)
+docker-compose up -d --build
+The application will be available at: http://localhost:8000
+
+4. Common Commands
+View running containers
+bash
+
+Copy
+docker-compose ps
+View application logs
+bash
+
+Copy
+# View all logs
+docker-compose logs
+
+# Follow logs in real-time
+docker-compose logs -f
+
+
+5. Database Management
+The PostgreSQL database is accessible on port 5436. You can connect to it using any database management tool with these credentials:
+
+Host: localhost
+Port: 5436
+Database: pyramids_pharmacy
+Username: postgres
+Password: postgres
